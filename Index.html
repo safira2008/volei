@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placar de Vôlei</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 80%;
+            max-width: 900px;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .scoreboard {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            z-index: 1;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+        }
+
+        .teams {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .team {
+            flex: 1;
+            text-align: center;
+        }
+
+        .team input {
+            width: 100%;
+            padding: 5px;
+            font-size: 1.2em;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .score {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .sets {
+            margin-top: 15px;
+            font-size: 1.5em;
+        }
+
+        .buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="scoreboard">
+            <div class="teams">
+                <div class="team">
+                    <input type="text" id="team1Name" placeholder="Nome da Equipe 1">
+                    <div id="team1Score" class="score">0</div>
+                </div>
+                <div class="team">
+                    <input type="text" id="team2Name" placeholder="Nome da Equipe 2">
+                    <div id="team2Score" class="score">0</div>
+                </div>
+            </div>
+            <div class="sets" id="setsText">Sets: 0 - 0</div>
+        </div>
+        
+        <div class="buttons">
+            <button class="button" onclick="addPoint(1)">Ponto da equipe 1</button>
+            <button class="button" onclick="addPoint(2)">Ponto da equipe 2</button>
+            <button class="button" onclick="winSet(1)">Equipe 1 vence o Set</button>
+            <button class="button" onclick="winSet(2)">Equipe 2 vence o Set</button>
+        </div>
+    </div>
+
+    <script>
+        let team1Score = 0;
+        let team2Score = 0;
+        let team1Sets = 0;
+        let team2Sets = 0;
+
+        // Atualiza o placar
+        function updateScore() {
+            document.getElementById('team1Score').innerText = team1Score;
+            document.getElementById('team2Score').innerText = team2Score;
+            document.getElementById('setsText').innerText = `Sets: ${team1Sets} - ${team2Sets}`;
+        }
+
+        // Função para adicionar pontos
+        function addPoint(team) {
+            if (team === 1) {
+                team1Score++;
+            } else if (team === 2) {
+                team2Score++;
+            }
+            updateScore();
+        }
+
+        // Função para registrar vitória de um set
+        function winSet(team) {
+            if (team === 1) {
+                team1Sets++;
+            } else if (team === 2) {
+                team2Sets++;
+            }
+            resetScores();
+            updateScore();
+        }
+
+        // Função para resetar os pontos após o fim de um set
+        function resetScores() {
+            team1Score = 0;
+            team2Score = 0;
+        }
+
+        // Atualiza os nomes das equipes
+        document.getElementById('team1Name').addEventListener('input', function() {
+            // Aqui você pode adicionar alguma lógica para atualizar o nome no placar, se necessário.
+        });
+
+        document.getElementById('team2Name').addEventListener('input', function() {
+            // Aqui você pode adicionar alguma lógica para atualizar o nome no placar, se necessário.
+        });
+    </script>
+
+</body>
+</html>
