@@ -84,7 +84,7 @@
         .button {
             padding: 10px 20px;
             font-size: 1.2em;
-            background-color: #4CAF50;
+            background-color: #d815c1;
             color: white;
             border: none;
             border-radius: 5px;
@@ -93,7 +93,7 @@
         }
 
         .button:hover {
-            background-color: #45a049;
+            background-color: #fa1be0;
         }
 
     </style>
@@ -122,6 +122,13 @@
             <button class="button" onclick="winSet(2)">Equipe 2 vence o Set</button>
         </div>
     </div>
+<div class="cronometro">
+  <h2>Cronômetro</h2>
+  <div id="display">00:00:00</div>
+  <button onclick="iniciar()">Iniciar</button>
+  <button onclick="pausar()">Pausar</button>
+  <button onclick="resetar()">Resetar</button>
+</div>
 
     <script>
         let team1Score = 0;
